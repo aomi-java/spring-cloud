@@ -1,0 +1,13 @@
+description = 'client'
+
+version '1.0.0'
+
+dependencies {
+    compileOnly spring_cloud.commons
+
+    compileOnly lib.json
+    compileOnly lib.retrofit
+
+    compileOnly "tech.aomi.common:exception:1.0.0"
+
+}

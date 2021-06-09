@@ -1,0 +1,40 @@
+plugins {
+    id "io.franzbecker.gradle-lombok" version "2.2"
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+apply from: 'https://onegit.com/enterprise/public/raw/master/libraries.gradle'
+apply from: 'https://onegit.com/enterprise/public/raw/master/spring-libraries.gradle'
+
+
+
+allprojects {
+    group 'tech.aomi.spring-cloud'
+
+    repositories {
+        maven { url "${project.'repo.url'}" }
+        mavenCentral()
+    }
+
+}
+
+subprojects {
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'io.franzbecker.gradle-lombok'
+
+    apply from: 'https://onegit.com/enterprise/public/raw/master/java.gradle'
+    apply from: 'https://onegit.com/enterprise/public/raw/master/idea.gradle'
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.4.6'
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2020.0.3'
+        }
+    }
+
+    dependencies {
+        compileOnly lib.slf4j_api
+    }
+}
+
+
